@@ -20,6 +20,3 @@ exports.getAllComment = async () => {
 	    }]
     });
 };
-exports.getAllReply = async () => {
-  return await Reply.findAll();
-};
