@@ -19,8 +19,15 @@ module.exports = function(app) {
 		const { username , comment , id_comment } = body
         await pricemonitor.createReply({comment, username , id_comment}).then(user => res.json(user)).catch(err => res.json(err.errors)); 
     });
-    app.put('/comment/edit',  async function(req, res) {
-         await pricemonitor.updateComment({dislikes : 10 , likes : 10 , id_comment : 1}).then(user => res.json(user)).catch(err => res.json(err.errors)); 
+    app.put('/comment/likes',  async function(req, res) {
+		const { body } = req
+		const {  likes , id_comment } = body
+         await pricemonitor.updateComment({likes , id_comment}).then(user => res.json(user)).catch(err => res.json(err.errors)); 
+    });
+    app.put('/comment/dislikes',  async function(req, res) {
+		const { body } = req
+		const {  dislikes , id_comment } = body
+         await pricemonitor.updateComment({dislikes , id_comment}).then(user => res.json(user)).catch(err => res.json(err.errors)); 
     });
 	app.get('/', function (req, res) {
 	 res.send({ status : 'Testing API Price Monitor'});

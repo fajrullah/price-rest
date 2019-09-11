@@ -18,7 +18,8 @@ exports.getAllComment = async () => {
   return await Comment.findAll({
 	    include: [{
 	        model: Reply,
-	    }]
+	    }],
+	    order: [ [ 'likes', 'DESC' ]]
     });
 };
 exports.createComment = async ({comment , username}) => { 
