@@ -27,8 +27,8 @@ exports.createComment = async ({comment , username}) => {
 exports.createReply = async ({comment , username , id_comment}) => { 
     return await Reply.create({comment , username , id_comment});
 };
-exports.createLinks = async ({links}) => { 
-    return await Link.create({links});
+exports.createLinks = async ({link}) => { 
+    return await Link.create({link});
 };
 exports.updateComment = async ({dislikes , likes , id_comment}) => {
     return await Comment.update({dislikes, likes },

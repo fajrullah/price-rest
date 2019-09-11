@@ -9,7 +9,7 @@ module.exports = function(app) {
          await pricemonitor.createComment({comment : 's' , username : 's'}).then(user => res.json(user)).catch(err => res.json(err.errors)); 
     });
     app.post('/links',  async function(req, res) {
-         await pricemonitor.createLink({links : 's'}).then(user => res.json(user)).catch(err => res.json(err.errors)); 
+         await pricemonitor.createLink({link : 's'}).then(user => res.json(user)).catch(err => res.json(err.errors)); 
     });
     app.post('/reply',  async function(req, res) {
          await pricemonitor.createReply({comment : 's' , username : 's' , id_comment : 1}).then(user => res.json(user)).catch(err => res.json(err.errors)); 

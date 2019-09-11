@@ -8,7 +8,7 @@ const Link = db.sequelize.define(
       type: Sequelize.INTEGER,
       primaryKey: true,
       autoIncrement: true
-    }
+    },
     link: {
       type: Sequelize.STRING
     },
