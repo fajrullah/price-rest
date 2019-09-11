@@ -20,3 +20,20 @@ exports.getAllComment = async () => {
 	    }]
     });
 };
+exports.createComment = async ({comment , username}) => { 
+    return await Comment.create({comment , username});
+};
+
+exports.createReply = async ({comment , username , id_comment}) => { 
+    return await Reply.create({comment , username , id_comment});
+};
+exports.createLinks = async ({links}) => { 
+    return await Reply.create({links});
+};
+
+exports.updateComment = async ({dislikes , likes , id_comment}) => {
+    return await Comment.update({dislikes, likes },
+                     {returning: true, plain: true, where: {id_comment} })
+                    .then(update => update)
+                    .catch(error => error)
+};
