@@ -16,7 +16,7 @@ module.exports = function(app) {
     });
     app.post('/reply',  async function(req, res) {
 		const { body } = req
-		const { username , comment } = body
+		const { username , comment , id_comment } = body
         await pricemonitor.createReply({comment, username , id_comment}).then(user => res.json(user)).catch(err => res.json(err.errors)); 
     });
     app.put('/comment/edit',  async function(req, res) {
