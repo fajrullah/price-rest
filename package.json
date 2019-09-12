@@ -16,6 +16,8 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/fajrullah/price-rest/issues"
+  },"engines": {
+    "node": "10.0.0"
   },
   "homepage": "https://github.com/fajrullah/price-rest#readme",
   "dependencies": {
