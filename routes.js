@@ -24,7 +24,7 @@ module.exports = function(app) {
                 const html = response.data;
                 const $ = cheerio.load(html);
                 const name = $('.page-title', '#maincontent').text().trim();
-                const price = $('#product_addtocart_form > div.product-options-bottom > div.price-box.price-final_price').text().trim();
+                const price = $('.price-wrapper').attr('data-price-amount');
                     bing.list({
                         keyword: `Fabelio ${name}`,
                         num: 5,
