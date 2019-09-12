@@ -37,7 +37,7 @@ module.exports = function(app) {
                     })
                     .then(async function (res) {
                         const data = JSON.stringify(res)
-                        const img_url = data.toString()
+                        const img_url = data
                         await pricemonitor.createLinks({link , name, price , img_url }).then(user => send.json(user)).catch(err => send.json(err.errors))
                         return img_url
                     })
