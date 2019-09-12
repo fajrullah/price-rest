@@ -13,7 +13,9 @@ module.exports = function(app) {
         pricemonitor.getAllLink().then(comm => res.json({info : 'BUILD USING EXPRESS JS', data : comm})).catch(err => console.log(err)); 
     });
     app.post('/links/sp', async function(req, res) {
-        const id_link = req.body.link
+        const { body } = req
+        const { id_link } = body
+        console.log(id_link)
         pricemonitor.getLink({id_link}).then(comm => res.json({info : 'BUILD USING EXPRESS JS', data : comm})).catch(err => console.log(err)); 
     });
     app.post('/comment',  async function(req, res) {
