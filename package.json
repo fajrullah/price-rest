@@ -17,7 +17,7 @@
   "bugs": {
     "url": "https://github.com/fajrullah/price-rest/issues"
   },"engines": {
-    "node": "10.0.0"
+    "node": "10.x"
   },
   "homepage": "https://github.com/fajrullah/price-rest#readme",
   "dependencies": {
