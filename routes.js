@@ -13,7 +13,7 @@ module.exports = function(app) {
   app.post('/scheduler/start', async function(req, res) {
           const { body } = req
           const { id_link, link } = body
-          const cronJob = cron.job("0 */1 * * * *", function(){
+          const cronJob = cron.job("0 */59 * * * *", function(){
               axios(link)
               .then( async response => {
                 const html = response.data;
@@ -27,7 +27,7 @@ module.exports = function(app) {
           cronJob.start();
     });
     app.get('/scheduler/stop', async function(req, res) {
-          const cronJob = cron.job("0 */1 * * * *", function(){
+          const cronJob = cron.job("0 */59 * * * *", function(){
               console.log('deactive')
           }); 
           cronJob.stop();
