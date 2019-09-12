@@ -13,7 +13,7 @@ module.exports = function(app) {
         pricemonitor.getAllLink().then(comm => res.json({info : 'BUILD USING EXPRESS JS', data : comm})).catch(err => console.log(err)); 
     });
     app.post('/links/sp', async function(req, res) {
-        const id_link = req.body.id_link
+        const id_link = req.body.link
         pricemonitor.getLink({id_link}).then(comm => res.json({info : 'BUILD USING EXPRESS JS', data : comm})).catch(err => console.log(err)); 
     });
     app.post('/comment',  async function(req, res) {
@@ -36,8 +36,12 @@ module.exports = function(app) {
                         detail: true
                     })
                     .then(async function (res) {
-                        const data = JSON.stringify(res)
-                        const img_url = data
+
+                        const data = res.map(res => {
+                            return { url : res.url}
+                        })
+                        console.log(data)
+                        const img_url = JSON.stringify(data)
                         await pricemonitor.createLinks({link , name, price , img_url }).then(user => send.json(user)).catch(err => send.json(err.errors))
                         return img_url
                     })
