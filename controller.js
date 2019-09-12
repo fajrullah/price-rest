@@ -45,3 +45,14 @@ exports.updateComment = async ({dislikes , likes , id_comment}) => {
                     .then(update => update)
                     .catch(error => error)
 };
+
+exports.updateLink = async ({id_link , price}) => {
+    return await Comment.update({price},
+                     {returning: true, plain: true, where: {id_link} })
+                    .then(update => update)
+                    .catch(error => error)
+};
+
+
+
+

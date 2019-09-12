@@ -26,11 +26,14 @@
     "body-parser": "^1.19.0",
     "cheerio": "^1.0.0-rc.3",
     "cors": "^2.8.5",
+    "cron": "^1.7.2",
     "express": "^4.17.1",
     "image-scraper": "^0.2.1",
     "images-scraper": "^2.0.11",
     "mysql": "^2.17.1",
     "mysql2": "^1.7.0",
-    "sequelize": "^5.18.4"
+    "node-schedule": "^1.3.2",
+    "sequelize": "^5.18.4",
+    "socket.io": "^2.2.0"
   }
 }

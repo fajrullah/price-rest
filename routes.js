@@ -3,12 +3,36 @@ const pricemonitor = require('./controller'),
          axios = require('axios'),
          cheerio = require('cheerio'),
          Scraper = require ('images-scraper'),
+         cron = require('cron'),
          bing = new Scraper.Bing();
 
 module.exports = function(app) {
 	app.get('/comm', async function(req, res) {
 	    pricemonitor.getAllComment().then(comm => res.json({info : 'BUILD USING EXPRESS JS', data : comm})).catch(err => console.log(err)); 
 	});
+  app.post('/scheduler/start', async function(req, res) {
+          const { body } = req
+          const { id_link, link } = body
+          const cronJob = cron.job("0 */1 * * * *", function(){
+              axios(link)
+              .then( async response => {
+                const html = response.data;
+                const $ = cheerio.load(html);
+                const price = $('.price-wrapper').attr('data-price-amount');
+                await pricemonitor.updateLink({id_link ,  price }).then(user => console.log(user)).catch(err => console.log(err.errors))
+              })
+              .catch(err => console.log(err));
+          }); 
+          res.send({status : 'cron active'})
+          cronJob.start();
+    });
+    app.get('/scheduler/stop', async function(req, res) {
+          const cronJob = cron.job("0 */1 * * * *", function(){
+              console.log('deactive')
+          }); 
+          cronJob.stop();
+          res.send({ status : 'cron deactive'})
+    });
     app.get('/links', async function(req, res) {
         pricemonitor.getAllLink().then(comm => res.json({info : 'BUILD USING EXPRESS JS', data : comm})).catch(err => console.log(err)); 
     });
