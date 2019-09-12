@@ -5,12 +5,17 @@ const pricemonitor = require('./controller'),
          Scraper = require ('images-scraper'),
          bing = new Scraper.Bing();
 
-
-
 module.exports = function(app) {
 	app.get('/comm', async function(req, res) {
 	    pricemonitor.getAllComment().then(comm => res.json({info : 'BUILD USING EXPRESS JS', data : comm})).catch(err => console.log(err)); 
 	});
+    app.get('/links', async function(req, res) {
+        pricemonitor.getAllLink().then(comm => res.json({info : 'BUILD USING EXPRESS JS', data : comm})).catch(err => console.log(err)); 
+    });
+    app.post('/links/sp', async function(req, res) {
+        const id_link = req.body.id_link
+        pricemonitor.getLink({id_link}).then(comm => res.json({info : 'BUILD USING EXPRESS JS', data : comm})).catch(err => console.log(err)); 
+    });
     app.post('/comment',  async function(req, res) {
 		const { body } = req
 		const { username , comment } = body
@@ -33,7 +38,6 @@ module.exports = function(app) {
                     .then(async function (res) {
                         const data = JSON.stringify(res)
                         const img_url = data.toString()
-                        console.log(img_url)
                         await pricemonitor.createLinks({link , name, price , img_url }).then(user => send.json(user)).catch(err => send.json(err.errors))
                         return img_url
                     })

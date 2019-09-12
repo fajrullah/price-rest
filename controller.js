@@ -14,6 +14,14 @@ Comment.hasMany(Reply, {
   },
   targetKey: 'id_comment'
 })
+exports.getAllLink= async () => {
+  return await Link.findAll();
+};
+exports.getLink= async ({id_link}) => {
+  return await Link.findOne({
+        where: { id_link }
+      });
+};
 exports.getAllComment = async () => {
   return await Comment.findAll({
 	    include: [{
