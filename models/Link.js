@@ -12,6 +12,15 @@ const Link = db.sequelize.define(
     link: {
       type: Sequelize.STRING
     },
+    price: {
+      type: Sequelize.STRING
+    },
+    name: {
+      type: Sequelize.STRING
+    },
+    img_url: {
+      type: Sequelize.STRING
+    },
     createtime: {
       type: Sequelize.DATE,
       defaultValue: Sequelize.NOW
